@@ -1,3 +1,6 @@
+require "net/http"
+require "json"
+
 class CryptosController < ApplicationController
   before_action :set_crypto, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
@@ -7,6 +10,17 @@ class CryptosController < ApplicationController
   # GET /cryptos.json
   def index
     @cryptos = Crypto.all
+
+    url = "https://api.coinmarketcap.com/v2/listings/?"
+    uri = URI(url)
+    response = Net::HTTP.get(uri)
+    @ID_List = JSON.parse(response)
+
+    url = 'https://api.coinmarketcap.com/v2/ticker/'
+    uri = URI(url)
+    response = Net::HTTP.get(uri)
+    @coins = JSON.parse(response)
+    # @my_coins = ["BTC","ETH","XRP"]
   end
 
   # GET /cryptos/1
