@@ -5,7 +5,12 @@
     <tr>
       <th>Name</th>
       <th>Symbol</th>
-      <th>Cost per</th>
+      <th>Current Price</th>
+      <th>Total Value</th>
+      <th>1 HR change</th>
+      <th>24 HR change</th>
+      <th>7 day change</th>
+      <!-- <th>Cost per</th> -->
       <th>Amount owned</th>
     </tr>
   </thead>
@@ -21,11 +26,17 @@
             <% if x["symbol"] == crypto.symbol %>
               <% c = @coins["data"][x["id"].to_s] %>
               <td><%= link_to x["name"], crypto %></td>
+              <td><%= crypto.symbol %></td>
+              <td>$<%= c["quotes"]["USD"]["price"] %></td>
+              <td>$<%= c["quotes"]["USD"]["price"].to_d * crypto.amount_owned %></td>
+              <td><%= c["quotes"]["USD"]["percent_change_1h"] %>%</td>
+              <td><%= c["quotes"]["USD"]["percent_change_24h"] %>%</td>
+              <td><%= c["quotes"]["USD"]["percent_change_7d"] %>%</td>
               <%#= c["name"] %><%#= c["quotes"]["USD"]["price"] %>
             <% end %>
           <% end %>
-          <td><%= crypto.symbol %></td>
-          <td><%= crypto.cost_per %></td>
+          
+          <!-- <td><%= number_to_currency(crypto.cost_per) %></td> -->
           <td><%= crypto.amount_owned %></td>
         </tr>
       <% end %>

@@ -11,7 +11,7 @@ class CryptosController < ApplicationController
   def index
     @cryptos = Crypto.all
 
-    url = "https://api.coinmarketcap.com/v2/listings/?"
+    url = "https://api.coinmarketcap.com/v2/listings/"
     uri = URI(url)
     response = Net::HTTP.get(uri)
     @ID_List = JSON.parse(response)
