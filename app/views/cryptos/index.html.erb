@@ -10,7 +10,7 @@
       <th>1 HR change</th>
       <th>24 HR change</th>
       <th>7 day change</th>
-      <!-- <th>Cost per</th> -->
+      <th>Cost per</th>
       <th>Amount owned</th>
     </tr>
   </thead>
@@ -36,7 +36,7 @@
             <% end %>
           <% end %>
           
-          <!-- <td><%= number_to_currency(crypto.cost_per) %></td> -->
+          <td>$<%= crypto.cost_per %></td>
           <td><%= crypto.amount_owned %></td>
         </tr>
       <% end %>
